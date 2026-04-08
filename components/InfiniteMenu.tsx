@@ -1116,58 +1116,50 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
 
       {activeItem && (
         <>
+          {/* Title - Above canvas on mobile, same position on desktop */}
           <h2
             className={`
           select-none
           absolute
           font-black
           [font-size:4rem]
-          md:left-[1.6em]
-          md:top-1/2
-          md:transform
-          md:translate-x-[20%]
-          md:-translate-y-1/2
-          md:transition-all
+          transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          top-[2em]
-          left-1/2
-          -translate-x-1/2
-          text-center
           ${
             isMoving
               ? 'opacity-0 pointer-events-none duration-[100ms]'
               : 'opacity-100 pointer-events-auto duration-[500ms]'
           }
+          /* Desktop styles (lg and above) */
+          lg:left-[1.6em] lg:top-1/2 lg:transform lg:translate-x-[20%] lg:-translate-y-1/2
+          /* Mobile styles (below lg) */
+          max-lg:left-1/2 max-lg:top-[5%] max-lg:-translate-x-1/2 max-lg:text-center max-lg:text-[2rem] max-lg:w-[90%]
         `}
           >
             {activeItem.title}
           </h2>
 
+          {/* Description - Below canvas on mobile, right side on desktop */}
           <p
             className={`
           select-none
-          absolute
-          max-w-[10ch]
-          text-[1.5rem]
-          md:top-1/2
-          md:right-[1%]
-          md:transition-all
+          transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          bottom-[8em]
-          left-1/2
-          -translate-x-1/2
-          text-center
-          max-w-[80%]
           ${
             isMoving
-              ? 'opacity-0 pointer-events-none duration-[100ms] md:translate-x-[-60%] -translate-y-1/2'
-              : 'opacity-100 pointer-events-auto duration-[500ms] md:translate-x-[-90%] -translate-y-1/2'
+              ? 'opacity-0 pointer-events-none duration-[100ms]'
+              : 'opacity-100 pointer-events-auto duration-[500ms]'
           }
+          /* Desktop styles (lg and above) */
+          lg:absolute lg:max-w-[10ch] lg:text-[1.5rem] lg:top-1/2 lg:right-[1%] lg:translate-x-[-90%] lg:-translate-y-1/2
+          /* Mobile styles (below lg) */
+          max-lg:absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:text-center max-lg:text-[1rem] max-lg:w-[80%] max-lg:text-sm
         `}
           >
             {activeItem.description}
           </p>
 
+          {/* Button - Same position but adjusted for mobile */}
           <div
             onClick={handleButtonClick}
             className={`
@@ -1187,12 +1179,15 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
           ${
             isMoving
-              ? 'bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2'
-              : 'bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2'
+              ? 'bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0'
+              : 'bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100'
           }
+          -translate-x-1/2
+          /* Mobile adjustment */
+          max-lg:bottom-[2em] max-lg:w-[50px] max-lg:h-[50px]
         `}
           >
-            <p className="select-none relative text-[#060010] top-[2px] text-[26px]">&#x2197;</p>
+            <p className="select-none relative text-[#060010] top-[2px] text-[26px] max-lg:text-[20px]">&#x2197;</p>
           </div>
         </>
       )}
