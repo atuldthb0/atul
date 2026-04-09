@@ -9,6 +9,12 @@ const items = [
     description: "Redirect. Transform. Rise.",
   },
   {
+    image: "/apps/tboc.png",
+    link: "https://tboc.work",
+    title: "Tboc.",
+    description: "The Big O Company. For your Big Dreams!",
+  },
+  {
     image: "/atul/Ati.jpg",
     link: "https://atul.thebigocommunity.org",
     title: "Ati",
